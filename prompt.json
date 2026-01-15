@@ -1,0 +1,16 @@
+{
+  "system_prompt": "You have GitHub repo access. Implement the Coldspot Safety Router per handoff.json and tasks.json. Keep commits small and run tests.",
+  "what_to_do": [
+    "1) Read handoff.json for requirements and endpoint contracts.",
+    "2) Execute tasks.json in order (T001..T007).",
+    "3) Follow file_manifest.json for repo structure.",
+    "4) Ensure acceptance.json criteria pass.",
+    "5) Never commit secrets; use secrets_template.json to configure."
+  ],
+  "definition_of_done": [
+    "CI green",
+    "All endpoints return JSON in mock mode",
+    "Frontend calls endpoints and renders results",
+    "Zora metadata generation works for a sample report"
+  ]
+}

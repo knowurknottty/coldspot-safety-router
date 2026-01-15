@@ -1,0 +1,8 @@
+filename,purpose
+handoff.json,Project requirements and constraints
+tasks.json,Ordered implementation tasks
+file_manifest.json,Intended repository file structure
+acceptance.json,"Acceptance criteria, contracts, performance targets"
+secrets_template.json,Environment variable template
+prompt.json,Short prompt to paste into GitHub-enabled agent
+manifest.csv,This manifest list

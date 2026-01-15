@@ -1,0 +1,52 @@
+{
+  "api_contract": {
+    "required_top_level_keys": [
+      "scope",
+      "threat_score",
+      "risk_level",
+      "incidents",
+      "sources_health",
+      "last_update"
+    ],
+    "context_rules": {
+      "city": [
+        "county",
+        "state",
+        "country"
+      ],
+      "county": [
+        "state",
+        "country"
+      ],
+      "state": [
+        "country"
+      ],
+      "country": []
+    }
+  },
+  "security": {
+    "no_secrets_in_repo": true,
+    "env_vars": [
+      "NEWSAPI_KEY",
+      "X_BEARER_TOKEN",
+      "WAZE_CCP_TOKEN",
+      "INRIX_API_KEY",
+      "SENTRY_DSN",
+      "COLDSPOT_API_BASE_URL"
+    ]
+  },
+  "performance": {
+    "targets_ms": {
+      "city": 500,
+      "county": 1000,
+      "state": 2000,
+      "country": 3000
+    },
+    "cache_ttls_seconds": {
+      "city": 180,
+      "county": 300,
+      "state": 600,
+      "country": 1800
+    }
+  }
+}

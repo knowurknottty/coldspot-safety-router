@@ -1,0 +1,97 @@
+{
+  "execution_order": [
+    {
+      "id": "T001",
+      "title": "Initialize GitHub repository",
+      "details": [
+        "Create repo 'coldspot-safety-router'.",
+        "Add Apache-2.0 (or MIT) license.",
+        "Add README describing MVP and geo scaling."
+      ],
+      "acceptance": [
+        "Repo exists and is clonable.",
+        "README renders and includes local dev instructions.",
+        "LICENSE file present."
+      ]
+    },
+    {
+      "id": "T002",
+      "title": "Add backend API skeleton",
+      "details": [
+        "Create /api endpoints: /threat/city, /threat/county, /threat/state, /threat/country.",
+        "Each endpoint returns consistent schema: {scope, threat_score, risk_level, incidents, sources_health, context(optional)}.",
+        "Stub source adapters (NWS/NOAA, DOT, news, social, etc.) with clear TODOs and safe fallbacks."
+      ],
+      "acceptance": [
+        "All endpoints respond locally (mock mode) with valid JSON.",
+        "Unit tests validate schemas.",
+        "No secrets hard-coded."
+      ]
+    },
+    {
+      "id": "T003",
+      "title": "Implement ThreatScoringEngine",
+      "details": [
+        "Implement weighted scoring with the stated weights.",
+        "Implement source fetch with per-source timeouts.",
+        "Track source health and errors."
+      ],
+      "acceptance": [
+        "Given fixed mock inputs, score is deterministic and clamped 0-11.",
+        "Timeouts handled without crashing."
+      ]
+    },
+    {
+      "id": "T004",
+      "title": "Implement geographic cascade",
+      "details": [
+        "City query also fetches (or loads cached) County + State + Country context.",
+        "County query also includes State + Country.",
+        "State query includes Country.",
+        "Add caching tiers (in-memory first; Redis optional)."
+      ],
+      "acceptance": [
+        "City endpoint returns context block with county/state/country summaries.",
+        "County endpoint returns context block with state/country summaries."
+      ]
+    },
+    {
+      "id": "T005",
+      "title": "Wire frontend to new endpoints",
+      "details": [
+        "Add scope selector (City/County/State/Country).",
+        "Update UI: threat score, incidents, and context cascade.",
+        "Replace alert() stubs with real rendering."
+      ],
+      "acceptance": [
+        "User can select scope and run analysis.",
+        "UI displays context cascade when include_context=true."
+      ]
+    },
+    {
+      "id": "T006",
+      "title": "Add Zora metadata generator",
+      "details": [
+        "Generate collection metadata JSON.",
+        "Generate token metadata JSON per threat report, including SVG data-URI image.",
+        "Add a CLI or endpoint to output metadata given score+location+timestamp."
+      ],
+      "acceptance": [
+        "Metadata validates as standard ERC-721 JSON.",
+        "Attributes include score, scope, location, timestamp."
+      ]
+    },
+    {
+      "id": "T007",
+      "title": "CI and repo hygiene",
+      "details": [
+        "Add GitHub Actions: lint + test.",
+        "Add .editorconfig, prettier/eslint, and basic security docs."
+      ],
+      "acceptance": [
+        "CI passes on PR.",
+        "Tests run in under 1 minute."
+      ]
+    }
+  ]
+}

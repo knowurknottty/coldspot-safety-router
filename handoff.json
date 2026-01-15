@@ -1,0 +1,74 @@
+{
+  "project": {
+    "name": "coldspot-safety-router",
+    "tagline": "Real-time threat analysis and safest routing (City/County/State/Country) with optional Zora NFT threat-report minting.",
+    "primary_mvp_location": "Huntsville, AL (City scope)",
+    "repo_visibility": "public",
+    "default_branch": "main",
+    "license": {
+      "recommended": "Apache-2.0",
+      "acceptable_alternatives": [
+        "MIT"
+      ],
+      "note": "Use Apache-2.0 if patent grant is desired; use MIT for simplest permissive licensing."
+    }
+  },
+  "core_goals": [
+    "Keep Huntsville City scope as first-class MVP but architect for nationwide scaling.",
+    "Add geographic scope support: city, county, state, country.",
+    "Backend provides cascading context: City includes County+State+Country; County includes State+Country; State includes Country.",
+    "Frontend supports selecting scope + querying appropriate endpoint.",
+    "Do not fearmonger: score derived from corroborated sources; incidents expire if unconfirmed."
+  ],
+  "architecture": {
+    "api_base": "https://api.coldspot.local/v1",
+    "threat_endpoints": {
+      "country": "/threat/country?format=summary|detailed",
+      "state": "/threat/state/{state_code}?format=summary|detailed&include_counties=true",
+      "county": "/threat/county/{state_code}/{county_fips}?format=summary|detailed&include_cities=true",
+      "city": "/threat/city/{state_code}/{county_fips}/{city_slug}?format=summary|detailed&include_context=true"
+    },
+    "scoring": {
+      "scale": "0-11",
+      "weights": {
+        "weather": 0.15,
+        "closures": 0.2,
+        "traffic": 0.25,
+        "officialAlerts": 0.25,
+        "news": 0.1,
+        "social": 0.05
+      },
+      "note": "Weights match the current UI narrative. Normalize and clamp to 11."
+    }
+  },
+  "nft": {
+    "enabled": true,
+    "note": "NFT minting is optional; at minimum generate Zora-ready metadata JSON + SVG image data URIs.",
+    "collection": {
+      "name": "Coldspot Safety Router - Location Threat Reports",
+      "seller_fee_basis_points": 500,
+      "royalty_percent": 5
+    }
+  },
+  "non_goals": [
+    "Do not ship private/regulated 911 CAD data without explicit legal/partner agreements.",
+    "Do not store PII (exact home addresses) by default; prefer coarse geofences for public outputs."
+  ],
+  "deliverables": {
+    "repo_files": [
+      "README.md",
+      "LICENSE",
+      "src/ (scoring, geo routing, nft metadata)",
+      "api/ (source adapters + threat endpoints)",
+      ".github/workflows/ (CI)",
+      "public/index.html (frontend)"
+    ]
+  },
+  "agent_operating_rules": [
+    "Make changes as small, reviewable commits (5-15 files per PR max).",
+    "Prefer typed JS/TS; if plain JS, include JSDoc types for API response shapes.",
+    "All endpoints must return deterministic JSON schema; include 'scope' and 'context' blocks.",
+    "Front-end must degrade gracefully when sources are down."
+  ],
+  "timestamp": "2026-01-15T02:56:00Z"
+}

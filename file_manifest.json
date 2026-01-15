@@ -1,0 +1,130 @@
+{
+  "paths": [
+    {
+      "path": "README.md",
+      "type": "doc",
+      "priority": "P0",
+      "owner": "repo"
+    },
+    {
+      "path": "LICENSE",
+      "type": "legal",
+      "priority": "P0",
+      "owner": "repo"
+    },
+    {
+      "path": "package.json",
+      "type": "build",
+      "priority": "P0",
+      "owner": "repo"
+    },
+    {
+      "path": "public/index.html",
+      "type": "frontend",
+      "priority": "P0",
+      "owner": "frontend"
+    },
+    {
+      "path": "src/scoring/ThreatScoringEngine.ts",
+      "type": "backend",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "src/geo/GeoResolver.ts",
+      "type": "backend",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "src/geo/CascadeContext.ts",
+      "type": "backend",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "api/threat/country.ts",
+      "type": "api",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "api/threat/state.ts",
+      "type": "api",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "api/threat/county.ts",
+      "type": "api",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "api/threat/city.ts",
+      "type": "api",
+      "priority": "P0",
+      "owner": "backend"
+    },
+    {
+      "path": "api/sources/nws.ts",
+      "type": "adapter",
+      "priority": "P1",
+      "owner": "backend"
+    },
+    {
+      "path": "api/sources/dot.ts",
+      "type": "adapter",
+      "priority": "P1",
+      "owner": "backend"
+    },
+    {
+      "path": "api/sources/gdelt.ts",
+      "type": "adapter",
+      "priority": "P1",
+      "owner": "backend"
+    },
+    {
+      "path": "api/sources/news.ts",
+      "type": "adapter",
+      "priority": "P1",
+      "owner": "backend"
+    },
+    {
+      "path": "api/sources/social.ts",
+      "type": "adapter",
+      "priority": "P2",
+      "owner": "backend"
+    },
+    {
+      "path": "src/nft/ZoraMetadata.ts",
+      "type": "nft",
+      "priority": "P1",
+      "owner": "nft"
+    },
+    {
+      "path": "src/nft/svg.ts",
+      "type": "nft",
+      "priority": "P1",
+      "owner": "nft"
+    },
+    {
+      "path": "tests/scoring.test.ts",
+      "type": "test",
+      "priority": "P0",
+      "owner": "qa"
+    },
+    {
+      "path": "tests/schema.test.ts",
+      "type": "test",
+      "priority": "P0",
+      "owner": "qa"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "type": "ci",
+      "priority": "P0",
+      "owner": "repo"
+    }
+  ]
+}
